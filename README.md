@@ -1,1 +1,0 @@
-# slumol.github.io
