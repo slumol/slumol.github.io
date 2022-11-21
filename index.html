@@ -27,9 +27,9 @@
 </div>
 <script>
     let timeline = {
-        "D":[30,60,90,120,180],
-        "M":[6,12,18,24,36],
-        "Y":[]
+        "Days":[30,60,90,120,180],
+        "Months":[6,12,18,24,36],
+        "Years":[]
     }
 
     function main(){
@@ -53,7 +53,7 @@
             for ( let i in timeline){
                 let item = null
                 switch (i){
-                    case "D":
+                    case "Days":
                         for ( const len in timeline[i]){
                             item = timeline[i][len], posDate = new Date()
                             posDate.setTime(d.getTime())
@@ -62,7 +62,7 @@
                             item.innerText = posDate.toLocaleDateString("en-US",options)
                         }
                         break;
-                    case "M":
+                    case "Months":
                         for ( const len in timeline[i]){
                             item = timeline[i][len], posDate = new Date()
                             posDate.setTime(d.getTime())
@@ -70,7 +70,7 @@
                             item.innerText = posDate.toLocaleDateString("en-US",options)
                         }
                         break;
-                    case "Y":
+                    case "Years":
                     for ( const len in timeline[i]){
                             item = timeline[i][len], posDate = new Date()
                             posDate.setTime(d.getTime())
