@@ -1,59 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Date Calculator(FIXED)</title>
-<style>
-    body{
-        font-size: large;
-    }
-    input[type="date"]{
-        font-size: large;
-    }
-    td:nth-child(1){
-        font-weight: bold;
-        border: 1px solid rgb(211, 94, 94);
-    }
-    td:nth-child(2){
-        border: 1px solid rgb(211, 94, 94);
-    }
-    td:nth-child(3){
-        border: 1px solid rgb(30, 188, 141);
-    }
-</style>
+    <title>Date Calculator(FIXED)</title>
+    <style>
+        body{
+            font-size: large;
+        }
+        input[type="date"]{
+            font-size: large;
+        }
+        td:nth-child(1){
+            font-weight: bold;
+            border: 1px solid rgb(211, 94, 94);
+        }
+        td:nth-child(2){
+            border: 1px solid rgb(211, 94, 94);
+        }
+        td:nth-child(3){
+            border: 1px solid rgb(30, 188, 141);
+        }
+    </style>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-<div id="app">
-    <input type="date" id="getDate">
-</div>
-<script>
-    let timeline = {
-        "Days":[30,60,90,120,180],
-        "Months":[6,12,18,24,36],
-        "Years":[]
-    }
-
-    function main(){
-        let app = document.getElementById("app"), table = document.createElement("table"),
-        body = table.createTBody()
-        app.append(table)
-        for ( let interval in timeline){
-            let newInterval = {}
-            body.insertRow(-1).insertCell(-1).innerText = interval
-            timeline[interval].forEach((v)=>{
-                let nrow = body.insertRow(-1)
-                nrow.insertCell(-1).innerText = v
-                newInterval[`-${v}`] = nrow.insertCell(-1)
-                newInterval[`+${v}`] = nrow.insertCell(-1)
-            })
-            timeline[interval] = newInterval
+    <div id="app">
+        <input type="date" id="getDate">
+    </div>
+    <script>
+        let timeline = {
+            "D":[30,60,90,120,180],
+            "M":[6,12,18,24,36],
+            "Y":[1,2,3,4]
         }
-        document.getElementById("getDate").onchange = function (){
-            let dString = this.value.split("-").map(v=>parseInt(v,10))
-            const d = new Date(dString), options = {year: 'numeric',  month: 'long',  day: 'numeric',}
-            for ( let i in timeline){
-                let item = null
-                switch (i){
-                    case "Days":
+        const cache = {}
+
+        function main(){
+            let app = document.getElementById("app"), table = document.createElement("table"),
+            body = table.createTBody()
+
+            let wapp = cache.wapp = window.Telegram.WebApp
+
+            app.append(table)
+            for ( let interval in timeline){
+                let newInterval = {}
+                body.insertRow(-1).insertCell(-1).innerText = interval
+                timeline[interval].forEach((v)=>{
+                    let nrow = body.insertRow(-1)
+                    nrow.insertCell(-1).innerText = v
+                    newInterval[`-${v}`] = nrow.insertCell(-1)
+                    newInterval[`+${v}`] = nrow.insertCell(-1)
+                })
+                timeline[interval] = newInterval
+            }
+            document.getElementById("getDate").onchange = function (){
+                let dString = this.value.split("-").map(v=>parseInt(v,10))
+                const d = new Date(dString), options = {year: 'numeric',  month: 'long',  day: 'numeric',}
+                for ( let i in timeline){
+                    let item = null
+                    switch (i){
+                        case "D":
                         for ( const len in timeline[i]){
                             item = timeline[i][len], posDate = new Date()
                             posDate.setTime(d.getTime())
@@ -62,7 +67,7 @@
                             item.innerText = posDate.toLocaleDateString("en-US",options)
                         }
                         break;
-                    case "Months":
+                        case "M":
                         for ( const len in timeline[i]){
                             item = timeline[i][len], posDate = new Date()
                             posDate.setTime(d.getTime())
@@ -70,20 +75,32 @@
                             item.innerText = posDate.toLocaleDateString("en-US",options)
                         }
                         break;
-                    case "Years":
-                    for ( const len in timeline[i]){
+                        case "Y":
+                        for ( const len in timeline[i]){
                             item = timeline[i][len], posDate = new Date()
                             posDate.setTime(d.getTime())
                             posDate.setFullYear(posDate.getFullYear() + parseInt(len,10))
                             item.innerText = posDate.toLocaleDateString("en-US",options)
                         }
                         break;
+                    }
                 }
             }
+
+            app.append(document.createTextNode(wapp.version))
+            app.append(document.createTextNode(wapp.platform ))
+            app.append(document.createTextNode(wapp.headerColor ))
+            app.append(document.createTextNode(wapp.backgroundColor ))
+            wapp.MainButton.setParams({
+                text:"REGISTER",
+                color:"#30A030",
+                text_color:"#000000",
+                is_active:true,
+                is_visible:true,
+            })
         }
-    }
-    document.addEventListener("DOMContentLoaded",main)
-    let log = console.log
-</script>
+        document.addEventListener("DOMContentLoaded",main)
+        let log = console.log
+    </script>
 </body>
 </html>
