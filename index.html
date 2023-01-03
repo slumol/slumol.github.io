@@ -87,10 +87,12 @@
                 }
             }
 
-            app.append(document.createTextNode(wapp.version))
-            app.append(document.createTextNode(wapp.platform ))
-            app.append(document.createTextNode(wapp.headerColor ))
-            app.append(document.createTextNode(wapp.backgroundColor ))
+            let preLog = document.createElement("pre")
+            app.append(preLog)
+            preLog.append(`${wapp.version}\n`)
+            preLog.append(`${wapp.platform }\n`)
+            preLog.append(`${wapp.headerColor }\n`)
+            preLog.append(`${wapp.backgroundColor }\n`)
             wapp.MainButton.setParams({
                 text:"REGISTER",
                 color:"#30A030",
@@ -98,6 +100,10 @@
                 is_active:true,
                 is_visible:true,
             })
+            wapp.themeParams = {
+                bg_color:"#FFFFFF",
+                secondary_bg_color:"#E0E0E0"
+            }
         }
         document.addEventListener("DOMContentLoaded",main)
         let log = console.log
