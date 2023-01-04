@@ -93,10 +93,7 @@
 
             let preLog = document.createElement("pre")
             app.append(preLog)
-            preLog.append(`${wapp.version}\n`)
-            preLog.append(`${wapp.platform }\n`)
-            preLog.append(`${wapp.headerColor }\n`)
-            preLog.append(`${wapp.backgroundColor }\n`)
+
             wapp.MainButton.setParams({
                 text:"REGISTER",
                 color:"#30A030",
@@ -141,6 +138,11 @@
 
             wapp.ready()
             preLog.append(`WebApp ready \n`)
+            preLog.append(`${wapp.version}\n`)
+            preLog.append(`${wapp.platform }\n`)
+            preLog.append(`${wapp.headerColor }\n`)
+            preLog.append(`${wapp.backgroundColor }\n`)
+            preLog.append(`${JSON.stringify(wapp.initDataUnsafe,null,4)}`)
             preLog.append(`Ticker V1 \n`)
         }
         document.addEventListener("DOMContentLoaded",main)
