@@ -104,18 +104,18 @@
             function mainBtnCallback(){
                 wapp.showPopup({
                     title:"test",
-                    message:`headerColor = ${wapp.headerColor}\nbackgroundGColor = ${backgroundColor}`,
+                    message:`headerColor = ${wapp.headerColor}\nbackgroundGColor = ${wapp.backgroundColor}`,
                     buttons:[{
-                        type:"ok",
-                        text:"final"
+                        "type":"ok",
+                        "text":"final"
                     },
                     {
-                        type:"close",
-                        text:"finalclose"
+                        "type":"close",
+                        "text":"finalclose"
                     },
                     {
-                        type:"destructive",
-                        text:"remove"
+                        "type":"destructive",
+                        "text":"remove"
                     }]
                 })
             }
@@ -138,7 +138,7 @@
             preLog.append(`${wapp.platform }\n`)
             preLog.append(`${wapp.headerColor }\n`)
             preLog.append(`${wapp.backgroundColor }\n`)
-            preLog.append(`${JSON.stringify(wapp.initDataUnsafe,null,4)}`)
+            preLog.append(`${JSON.stringify(wapp.initDataUnsafe,null,4)}\n`)
             preLog.append(`Ticker V2 \n`)
         }
         document.addEventListener("DOMContentLoaded",main)
