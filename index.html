@@ -131,26 +131,7 @@
             wapp.BackButton.isVisible = true;
             wapp.BackButton.show()
             function backBtnCallback(){
-                wapp.showPopup({
-                    title:"test",
-                    message:`headerColor = ${wapp.headerColor}\nbackgroundGColor = ${backgroundColor}`,
-                    buttons:[{
-                        type:"ok",
-                        text:"final"
-                    },
-                    {
-                        type:"close",
-                        text:"finalclose"
-                    },
-                    {
-                        type:"cancel",
-                        text:"finalcancel"
-                    },
-                    {
-                        type:"destructive",
-                        text:"remove"
-                    }]
-                })
+                wapp.showAlert("ASD")
             }
             wapp.onEvent("backButtonClicked", backBtnCallback)
             preLog.append(`BackButton initialized\n`)
@@ -158,6 +139,9 @@
             wapp.themeParams.bg_color="#FFFFFF"
             wapp.themeParams.secondary_bg_color="#E0E0E0"
 
+            wapp.ready()
+            preLog.append(`WebApp ready \n`)
+            preLog.append(`Ticker V1 \n`)
         }
         document.addEventListener("DOMContentLoaded",main)
         let log = console.log
