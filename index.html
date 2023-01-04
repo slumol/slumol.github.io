@@ -127,6 +127,7 @@
                 })
             }
             wapp.onEvent("mainButtonClicked",mainBtnCallback)
+            preLog.append(`MainButton initialized\n`)
             wapp.BackButton.isVisible = true;
             wapp.BackButton.show()
             function backBtnCallback(){
@@ -152,6 +153,8 @@
                 })
             }
             wapp.onEvent("backButtonClicked", backBtnCallback)
+            preLog.append(`BackButton initialized\n`)
+
             wapp.themeParams.bg_color="#FFFFFF"
             wapp.themeParams.secondary_bg_color="#E0E0E0"
 
