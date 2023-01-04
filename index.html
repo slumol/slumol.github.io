@@ -114,10 +114,6 @@
                         text:"finalclose"
                     },
                     {
-                        type:"cancel",
-                        text:"finalcancel"
-                    },
-                    {
                         type:"destructive",
                         text:"remove"
                     }]
@@ -125,13 +121,13 @@
             }
             wapp.onEvent("mainButtonClicked",mainBtnCallback)
             preLog.append(`MainButton initialized\n`)
-            wapp.BackButton.isVisible = true;
-            wapp.BackButton.show()
-            function backBtnCallback(){
-                wapp.showAlert("ASD")
-            }
-            wapp.onEvent("backButtonClicked", backBtnCallback)
-            preLog.append(`BackButton initialized\n`)
+            // wapp.BackButton.isVisible = true;
+            // wapp.BackButton.show()
+            // function backBtnCallback(){
+            //     wapp.showAlert("ASD")
+            // }
+            // wapp.onEvent("backButtonClicked", backBtnCallback)
+            // preLog.append(`BackButton initialized\n`)
 
             wapp.themeParams.bg_color="#FFFFFF"
             wapp.themeParams.secondary_bg_color="#E0E0E0"
@@ -143,7 +139,7 @@
             preLog.append(`${wapp.headerColor }\n`)
             preLog.append(`${wapp.backgroundColor }\n`)
             preLog.append(`${JSON.stringify(wapp.initDataUnsafe,null,4)}`)
-            preLog.append(`Ticker V1 \n`)
+            preLog.append(`Ticker V2 \n`)
         }
         document.addEventListener("DOMContentLoaded",main)
         let log = console.log
